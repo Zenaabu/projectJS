@@ -115,6 +115,29 @@ button:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+.confirmDeleteBtn,
+.cancelDeleteBtn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #111, #444);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+}
+
+.confirmDeleteBtn:hover,
+.cancelDeleteBtn:hover {
+  background: linear-gradient(to right, #333, #111);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
 /* Contact List */
 #listContants ol {
   list-style: none;
@@ -255,6 +278,21 @@ body.modalOpen {
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+}
+
+.editInput {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.editFormWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 

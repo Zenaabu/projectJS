@@ -137,4 +137,76 @@ contacts.forEach(contact => {
             document.body.classList.remove('modalOpen');
         });
     });
+
+    // edit contact
+    editBtn.addEventListener('click', () => {
+        alertTitle.textContent = 'Edit Contact'; // change title
+        alertTitle.style.display = 'block'; // show the title
+
+        // input fields
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.value = contact.name;
+
+        const phoneInput = document.createElement('input');
+        phoneInput.type = 'text';
+        phoneInput.value = contact.phone;
+
+        const emailInput = document.createElement('input');
+        emailInput.type = 'text';
+        emailInput.value = contact.email;
+
+        nameInput.classList.add('editInput');
+        phoneInput.classList.add('editInput');
+        emailInput.classList.add('editInput');
+
+        // form wrapper
+        const formWrapper = document.createElement('div');
+        formWrapper.classList.add('editFormWrapper');
+        formWrapper.append(nameInput, phoneInput, emailInput);
+
+        // save & cancel buttons
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+        saveBtn.classList.add('confirmDeleteBtn');  // have the same css as the confirmation delete button
+
+        const cancelBtn = document.createElement('button');
+        cancelBtn.textContent = 'Cancel';
+        cancelBtn.classList.add('cancelDeleteBtn'); // have the same css as the cancellation delete button
+
+        // buttons wrapper
+        const buttonWrapper = document.createElement('div');
+        buttonWrapper.classList.add('modalButtons');
+        buttonWrapper.append(cancelBtn, saveBtn);
+
+        // cleaning our modal then adding all elements to it
+        alertText.innerHTML = '';
+        alertText.appendChild(formWrapper);
+        alertText.appendChild(buttonWrapper);
+
+        modal.classList.remove('hidden'); // show the popup
+        document.body.classList.add('modalOpen'); 
+
+        // save button
+        saveBtn.addEventListener('click', () => {
+            contact.name = nameInput.value;
+            contact.phone = phoneInput.value;
+            contact.email = emailInput.value;
+
+            strong.textContent = contact.name;
+
+            modal.classList.add('hidden');
+            document.body.classList.remove('modalOpen'); // hide the popup
+        });
+
+        // cancel button
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.add('hidden'); //hide the popup
+            document.body.classList.remove('modalOpen');
+        });
+
+});
+
+
+ 
 });
