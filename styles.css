@@ -295,6 +295,28 @@ body.modalOpen {
   flex-direction: column;
 }
 
+.inputGroup {
+  margin-bottom: 1em;
+}
+
+.inputGroup label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+.required {
+  color: red;
+  margin-left: 2px;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 0.2em;
+  height: 1em;
+}
+
 
 /*#endregion*/
 

@@ -3,7 +3,7 @@
 // saving the search input in a const
 const searchInput = document.querySelector('.searchBar input');
 
-// סינון אנשי קשר לפי מה שהמשתמש מקליד
+// filter the contacts by what the user types
 searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase(); // transfering the name to lower case
     const contactItems = document.querySelectorAll('#contacts li'); // having all the contacts
