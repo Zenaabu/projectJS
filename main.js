@@ -15,6 +15,11 @@ const contacts=[
         phone:"0531278964",
         email:"eranza11@yahoo.com"
     },
+    {
+        name:"Percy Jackson",
+        phone:"0501298736",
+        email:"percyj@gmail.com"
+    }
 ]
 
 
@@ -28,7 +33,7 @@ contacts.forEach(contact => {
 function createContactElement(contact){
     const li = document.createElement('li') // create a new li (a roe for each contact in the list)
     const strong = document.createElement('strong') // create an element for the contact name
-    strong.textContent=contact.name
+    strong.textContent=`${contact.name} - ${contact.phone} `
 
     const divIconButtons = document.createElement('div') // create a wrapper for the buttons (info, edit, delete)
     divIconButtons.className="iconButtons" 
@@ -306,7 +311,7 @@ function createContactElement(contact){
         contact.name = name;
         contact.phone = phone;
         contact.email = email;
-        strong.textContent = contact.name;
+        strong.textContent = `${contact.name} - ${contact.phone} `;
 
         modal.classList.add('hidden');
         document.body.classList.remove('modalOpen');
