@@ -28,8 +28,12 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
         const wrapper = document.createElement('div');
         wrapper.className = 'inputGroup'; // a wrapper for the input fields
 
+        // if it's an address or a free text or an email then don't add the class required
         const label = document.createElement('label');
-        label.innerHTML = `${labelText} <span class="required">*</span>`; // creating a lbel text input
+        if(labelText==='Address' || labelText==='Free text' || labelText==='Email')
+             label.innerHTML = labelText; // creating a lbel text input for the address/ the free text
+        else
+            label.innerHTML = `${labelText} <span class="required">*</span>`; // creating a lbel text input
 
         const input = document.createElement('input');
         input.type = inputType; // creating the input
@@ -46,11 +50,13 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
     const nameField = createLabeledInput('Name', 'text', 'Full name'); // creating an input field for the name
     const phoneField = createLabeledInput('Phone', 'text', 'Phone number'); // creating an input field for the phone
     const emailField = createLabeledInput('Email', 'email', 'Email address'); // creating an input field for the email
+    const addressField = createLabeledInput('Address', 'text', 'Adress'); // creating an input field for the address
+    const freeTextField = createLabeledInput('Free text', 'text', 'Free text'); // creating an input field for the free text
 
     // creating a wrapper that includes all the input fields we created
     const formWrapper = document.createElement('div');
     formWrapper.classList.add('editFormWrapper');
-    formWrapper.append(nameField.wrapper, phoneField.wrapper, emailField.wrapper);
+    formWrapper.append(nameField.wrapper, phoneField.wrapper, emailField.wrapper, addressField.wrapper, freeTextField.wrapper);
 
     const saveBtn = document.createElement('button');
     saveBtn.textContent = 'Save';
@@ -85,12 +91,13 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
         // starting all the error messages with an empty string
         nameField.error.textContent = '';
         phoneField.error.textContent = '';
-        emailField.error.textContent = '';
 
         // saving all the input values in a variables (without spaces at the begining and at the end)
         const name = nameField.input.value.trim();
         const phone = phoneField.input.value.trim();
         const email = emailField.input.value.trim();
+        const address = addressField.input.value.trim();
+        const freeText = freeTextField.input.value.trim();
 
         let hasError = false; // a variable that checks if there is an invalid input
             
@@ -150,11 +157,10 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
 
         // a function that gets an email and returns true if it's valid and false if not
         function isEmailValid(email) {
+            // if the email is null or empty return true
             if (email==null || email.length==0) 
-                {
-                    emailField.error.textContent='Email is required!'
-                    return false; // if the email is null or empty return false
-                }
+                    return true; // the email is not required
+
             if (!email.includes('@')) 
                 {
                     emailField.error.textContent='Invalid email format'
@@ -202,7 +208,7 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
         if(hasError) return; // if the name alresdy exists do not add the contact to the array
 
         //if we still here then the fields are valis and we need to add the contact
-        const newContact = { name, phone, email };
+        const newContact = { name, phone, email, address, freeText };
         contacts.push(newContact); // adding the contact to the contacts array
         createContactElement(newContact); // adding the contact to the page
         closeModal(); // close the popup

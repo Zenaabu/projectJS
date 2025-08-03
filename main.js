@@ -3,22 +3,30 @@ const contacts=[
     {
         name:"Alice Jason",
         phone:"0524163789",
-        email:"alice@gmail.com"
+        email:"alice@gmail.com",
+        address:"דיזנגוף 99, תל אביב",
+        freeText:"hi, i like cats"
     },
     {
         name:"Tom Hanks",
         phone:"0541237896",
-        email:"tom123@law.co.il"
+        email:"tom123@law.co.il",
+        address:"שדרות הנשיא 103, חיפה",
+        freeText:"I'm a lawyer"
     },
     {
         name:"Eran Zahavi",
         phone:"0531278964",
-        email:"eranza11@yahoo.com"
+        email:"eranza11@yahoo.com",
+        address:"רחוב יפו 97, ירושלים",
+        freeText:"playing games is my habbit"
     },
     {
         name:"Percy Jackson",
         phone:"0501298736",
-        email:"percyj@gmail.com"
+        email:"percyj@gmail.com",
+        address:"הרצל 12, ראשון לציון",
+        freeText:"my parents named me after reading the book percy jackson!"
     }
 ]
 
@@ -98,7 +106,17 @@ function createContactElement(contact){
     // contact information
     infoBtn.addEventListener('click', () =>{
         alertTitle.style.display = 'block';
-        alertText.textContent = `Name: ${contact.name}\nPhone: ${contact.phone}\nEmail: ${contact.email}`;
+
+        // the popup content
+        // if the email/address/freeText doesn't exist then don't show them on the popup
+        alertText.textContent = `Name: ${contact.name}\n Phone: ${contact.phone}`
+        if(contact.email!=null && contact.email!='')
+            alertText.textContent+=`\n Email: ${contact.email} `
+        if(contact.address!=null && contact.address!='')
+            alertText.textContent+=`\n Address:  ${contact.address}`
+        if(contact.freeText!=null && contact.freeText!='')
+            alertText.textContent+=`\n Free text: ${contact.freeText}`
+
         modal.classList.remove('hidden');
         document.body.classList.add('modalOpen');
 
@@ -158,7 +176,12 @@ function createContactElement(contact){
         wrapper.className = 'inputGroup'; // input wrapper
 
         const label = document.createElement('label');
-        label.innerHTML = `${labelText} <span class="required">*</span>`; // creating the label before the input 
+
+        // if it's an address or a free text or an email then don't add the class required
+        if(labelText==='Address' || labelText==='Free text' || labelText==='Email')
+             label.innerHTML = labelText; // creating a lbel text input for the address/ the free text
+        else
+            label.innerHTML = `${labelText} <span class="required">*</span>`; // creating a lbel text input
 
         const input = document.createElement('input');
         input.type = 'text';
@@ -176,10 +199,12 @@ function createContactElement(contact){
     const nameField = createLabeledInput('Name', contact.name); // creating the name input
     const phoneField = createLabeledInput('Phone', contact.phone); // creating the phone input
     const emailField = createLabeledInput('Email', contact.email); // creating the email input
+    const addressField = createLabeledInput('Address', contact.address); // creating the address input
+    const freeTextField = createLabeledInput('Free text', contact.freeText); // creating the free text input
 
     const formWrapper = document.createElement('div'); // creating a wrapper for the form
     formWrapper.classList.add('editFormWrapper');
-    formWrapper.append(nameField.wrapper, phoneField.wrapper, emailField.wrapper); // adding all the inputs to the form wrapper
+    formWrapper.append(nameField.wrapper, phoneField.wrapper, emailField.wrapper,addressField.wrapper, freeTextField.wrapper); // adding all the inputs to the form wrapper
 
     // creating the save button
     const saveBtn = document.createElement('button');
@@ -213,12 +238,13 @@ function createContactElement(contact){
         // starting all the error messages with an empty text
         nameField.error.textContent = '';
         phoneField.error.textContent = '';
-        emailField.error.textContent = '';
 
         // saving all the input values in a variables (without spaces at the begining and at the end)
         const name = nameField.input.value.trim();
         const phone = phoneField.input.value.trim();
         const email = emailField.input.value.trim();
+        const address = addressField.input.value.trim();
+        const freeText = freeTextField.input.value.trim();
 
         let hasError = false; // the flag that checks if there is an error
 
@@ -265,8 +291,7 @@ function createContactElement(contact){
         function isEmailValid(email) {
             // if the user did not write anything
             if (email==null || email.length==0) {
-                emailField.error.textContent = 'Email is required!';
-                return false;
+                return true; // it's not required
             }
             if (!email.includes('@')) {
                 emailField.error.textContent = 'Invalid email format';
@@ -274,14 +299,13 @@ function createContactElement(contact){
             }
             const parts = email.split('@');
             if (parts.length !== 2 || !parts[1].includes('.')) {
-                emailField.error.textContent = 'Invalid email format';
                 return false;
             }
             return true;
         }
 
         // if the name or the phone or the email is not valid then we don't change the name
-        if (!isNameValid(name) || !isPhoneValid(phone) || !isEmailValid(email)) return;
+        if (!isNameValid(name) || !isPhoneValid(phone)|| !isEmailValid(email)) return;
 
         // save the current name to check if the user types another name that are already exists
         const currentName = contact.name;
@@ -311,6 +335,8 @@ function createContactElement(contact){
         contact.name = name;
         contact.phone = phone;
         contact.email = email;
+        contact.address= address;
+        contact.freeText = freeText;
         strong.textContent = `${contact.name} - ${contact.phone} `;
 
         modal.classList.add('hidden');
