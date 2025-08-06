@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="darkMode.css">
-    <title>Phone Book</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <h1>
-            Phone Book
-        </h1>
-        <div id="menu">
-            <a href="aboutUs.html">About us</a>
-            <a href="contactUs.html">Contact us</a>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="darkMode.css">
+        <title>Phone Book</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>
+                Phone Book
+            </h1>
+            <div id="menu">
+                <a href="aboutUs.html">About us</a>
+                <a href="contactUs.html">Contact us</a>
+            </div>
 
-    </header>
-    <main>
-        <div class="buttons">
-            <button id="deleteAllBtn">Delete all</button>
-            <button id="addContactBtn">Add contact</button>
-            <button id="toggleDarkModeBtn">Dark Mode</button>
-        </div>
-        <div class="searchBar">
-            <input type="text" placeholder="Search contacts...">
-            <i class="fas fa-search"></i>
-        </div>
-        <div id="listContants">
-            <ol id="contacts">
-                
-            </ol>
-        </div>
-    </main>
-    <footer>
-        <div>
-            <p>&copy; 2025 all rights reserved. Zena Abu Moflah & Marsel Khoury</p>
-        </div>
-        <div id="footerLinks">
-            <a href="aboutUs.html">About us</a>
-            <a href="contactUs.html">Contact us</a>
-         </div>
-    </footer>
-    <script src="main.js"></script>
-    <script src="search.js"></script>
-    <script src="addContact.js"></script>
-    <script src="deleteAll.js"></script>
-    <script src="effect.js"></script>
-</body>
+        </header>
+        <main>
+            <div class="buttons">
+                <button id="deleteAllBtn">Delete all</button>
+                <button id="addContactBtn">Add contact</button>
+                <button id="toggleDarkModeBtn">Dark Mode</button>
+            </div>
+            <div class="searchBar">
+                <input type="text" placeholder="Search contacts...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div id="listContants">
+                <ol id="contacts"></ol>
+            </div>
+        </main>
+        <footer>
+            <div>
+                <p>&copy; 2025 all rights reserved. Zena Abu Moflah & Marsel Khoury</p>
+            </div>
+            <div id="footerLinks">
+                <a href="aboutUs.html">About us</a>
+                <a href="contactUs.html">Contact us</a>
+            </div>
+        </footer>
+        <script src="main.js"></script>
+        <script src="search.js"></script>
+        <script src="addContact.js"></script>
+        <script src="deleteAll.js"></script>
+        <script src="effect.js"></script>
+    </body>
 </html>

@@ -14,7 +14,7 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
     closeBtn.className = 'close';
     closeBtn.innerHTML = '&times;'; // close button
 
-     const title = document.createElement('h2');
+    const title = document.createElement('h2');
     title.className = 'modalTitle';
     title.textContent = 'Add New Contact'; // adding atitle to the popup
 
@@ -202,15 +202,23 @@ const addContactBtn = document.getElementById('addContactBtn'); // save the add 
                 nameField.error.textContent='Contact with the same name already exists!'
                 hasError=true;
             }
+            // if you found a contact with the same phone change the error message and the flag (hasError) to true
+            if(contact.phone===phone)
+            {
+                phoneField.error.textContent='Contact with the same number already exists!'
+                hasError=true;
+            }
                 
         })
 
         if(hasError) return; // if the name alresdy exists do not add the contact to the array
 
         //if we still here then the fields are valis and we need to add the contact
-        const newContact = { name, phone, email, address, freeText };
+        const newContact = { name, phone, email, address, freeText, isFavorite: false };
         contacts.push(newContact); // adding the contact to the contacts array
-        createContactElement(newContact); // adding the contact to the page
+
+        
+        renderContacts() // render the list with the new contact
         closeModal(); // close the popup
     });
 });

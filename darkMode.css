@@ -31,21 +31,17 @@ body.dark {
   background-color: #121212;
   color: black;
 }
-
 body.dark .container {
   background-color: #1e1e1e;
   color: black;
 }
-
 body.dark .contactItem {
   background-color: #2b2b2b;
   color: black;
 }
-
 body.dark .contactItem strong {
   color: black;
 }
-
 body.dark input,
 body.dark textarea {
   background-color: #333;
@@ -57,17 +53,14 @@ body.dark .modal *{
   background-color: #2c2c2c;
   
 }
-
 body.dark .editInput {
   background-color: #333;
   color: white;
   border: 1px solid #555;
 }
-
 body.dark .searchInput {
   background-color: #2b2b2b;
   color: white;
   border: 1px solid #555;
 }
-
 
