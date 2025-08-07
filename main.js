@@ -142,7 +142,6 @@ function createContactElement(contact){
     alertTitle.className = 'modalTitle'; 
 
     modalContent.insertBefore(alertTitle, alertText);  // adding the title to the popup
-    contacts.sort((a, b) => b.isFavorite - a.isFavorite);
 
     // close popup button
     closeBtn.addEventListener('click', () => {
@@ -346,6 +345,7 @@ function createContactElement(contact){
                 }
                 const parts = email.split('@');
                 if (parts.length !== 2 || !parts[1].includes('.')) {
+                    emailField.error.textContent = 'Invalid email format';
                     return false;
                 }
                 return true;
@@ -368,8 +368,8 @@ function createContactElement(contact){
             contacts.forEach(contact =>{
                 // if you found a contact with the same name change the error message and the flag (hasError) to true
                 // (this works only if the name is for another contact and not the current one)
-                if(noSpace(contact.name.toLocaleLowerCase())!= noSpace(currentName.toLowerCase()) &&
-                noSpace(contact.name.toLowerCase()) === noSpace(name.toLowerCase()))
+                if(noSpace(contact.name)!= noSpace(currentName) &&
+                noSpace(contact.name) === noSpace(name))
                 {
                     nameField.error.textContent='Contact with the same name already exists!'
                     hasError=true;
